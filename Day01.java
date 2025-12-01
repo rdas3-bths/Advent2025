@@ -19,13 +19,12 @@ public class Day01 {
             if (position == 0) {
                 partOneAnswer++;
             }
-            System.out.println("Dial is rotated " + line + " to point to " + position);
         }
         System.out.println("Part one answer: " + partOneAnswer);
         System.out.println("Part two answer: " + partTwoAnswer);
     }
 
-    public static int doOneRotation(String direction, int position) {
+    public static int doOneMove(String direction, int position) {
         if (direction.equals("L")) {
             position--;
             if (position == -1) {
@@ -47,7 +46,7 @@ public class Day01 {
     public static int doRotation(String direction, int amount, int position) {
 
         for (int i = 0; i < amount; i++) {
-            position = doOneRotation(direction, position);
+            position = doOneMove(direction, position);
         }
 
         return position;
