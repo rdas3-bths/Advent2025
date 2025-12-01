@@ -5,20 +5,18 @@ import java.util.Scanner;
 
 public class Day01 {
 
+    public static int partOneAnswer = 0;
     public static int partTwoAnswer = 0;
 
     public static void main(String[] args) {
         ArrayList<String> fileData = getFileData("src/data");
 
         int position = 50;
-        int partOneAnswer = 0;
         for (String line : fileData) {
             String direction = line.substring(0,1);
             int amount = Integer.parseInt(line.substring(1));
             position = doRotation(direction, amount, position);
-            if (position == 0) {
-                partOneAnswer++;
-            }
+
         }
         System.out.println("Part one answer: " + partOneAnswer);
         System.out.println("Part two answer: " + partTwoAnswer);
@@ -49,6 +47,9 @@ public class Day01 {
             position = doOneMove(direction, position);
         }
 
+        if (position == 0) {
+            partOneAnswer++;
+        }
         return position;
     }
 
