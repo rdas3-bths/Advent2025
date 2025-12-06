@@ -17,7 +17,7 @@ public class Day06 {
                 int amount = maxLength - fileData.get(i).length();
                 String add = "";
                 for (int c = 0; c < amount; c++) {
-                    add += ".";
+                    add += " ";
                 }
                 fileData.set(i, fileData.get(i) + add);
             }
@@ -42,7 +42,7 @@ public class Day06 {
             }
 
             for (int r = 0; r < problems.size() - 1; r++) {
-                long item = Long.parseLong(problems.get(r)[c].replace(".", ""));
+                int item = Integer.parseInt(problems.get(r)[c]);
                 numbers.add(problems.get(r)[c]);
                 if (operation.equals("*")) {
                     answer *= item;
@@ -67,24 +67,13 @@ public class Day06 {
             if (allSpaces) {
                 for (int j = 0; j < fileData.size(); j++) {
                     StringBuilder sb = new StringBuilder(fileData.get(j));
-                    sb.setCharAt(c, '|');
+                    sb.setCharAt(c, '-');
                     fileData.set(j, sb.toString());
                 }
             }
         }
 
-        for (int i = 0; i < fileData.size(); i++) {
-            StringBuilder sb = new StringBuilder(fileData.get(i));
-            for (int cc = 0; cc < sb.length(); cc++) {
-                char cur = sb.charAt(cc);
-                if (cur == ' ') {
-                    sb.setCharAt(cc, '.');
-                }
-            }
-            fileData.set(i, sb.toString());
-        }
-
-        int numberOfProblems = fileData.get(0).split("\\|").length;
+        int numberOfProblems = fileData.get(0).split("-").length;
         long partTwoAnswer = 0;
         for (int n = 0; n < numberOfProblems; n++) {
             partTwoAnswer += doPartTwoProblem(n, fileData);
@@ -94,11 +83,11 @@ public class Day06 {
     }
 
     public static long doPartTwoProblem(int problemNumber, ArrayList<String> fileData) {
-        String numberOne = fileData.get(0).split("\\|")[problemNumber];
-        String numberTwo = fileData.get(1).split("\\|")[problemNumber];
-        String numberThree = fileData.get(2).split("\\|")[problemNumber];
-        String numberFour = fileData.get(3).split("\\|")[problemNumber];
-        String operator = fileData.get(4).split("\\|")[problemNumber];
+        String numberOne = fileData.get(0).split("-")[problemNumber];
+        String numberTwo = fileData.get(1).split("-")[problemNumber];
+        String numberThree = fileData.get(2).split("-")[problemNumber];
+        String numberFour = fileData.get(3).split("-")[problemNumber];
+        String operator = fileData.get(4).split("-")[problemNumber];
         long answer = 0;
         if (operator.contains("*")) {
             answer = 1;
@@ -112,7 +101,7 @@ public class Day06 {
             char four = numberFour.charAt(i);
 
             String combined = "" + one + two + three + four;
-            long actualNumber = Long.parseLong(combined.replace(".", ""));
+            long actualNumber = Long.parseLong(combined.trim());
             if (operator.contains("*")) {
                 answer *= actualNumber;
             }
