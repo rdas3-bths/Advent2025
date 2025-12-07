@@ -42,19 +42,15 @@ public class Day07 {
         int splits = 0;
         long[] newBeamCounter = new long[beamCounter.length];
         for (int c = 0; c < grid[row].length; c++) {
-            String item = grid[row][c];
-            if (item.equals("S") || item.equals("|")) {
-                String itemBelow = grid[row+1][c];
-                if (itemBelow.equals("^")) {
+            if (grid[row][c].equals("S") || grid[row][c].equals("|")) {
+                if (grid[row+1][c].equals("^")) {
                     splits++;
                     newBeamCounter[c-1] += beamCounter[c];
                     newBeamCounter[c+1] += beamCounter[c];
-                    String itemLeft = grid[row+1][c-1];
-                    String itemRight = grid[row+1][c+1];
-                    if (itemLeft.equals(".")) {
+                    if (grid[row+1][c-1].equals(".")) {
                         grid[row+1][c-1] = "|";
                     }
-                    if (itemRight.equals(".")) {
+                    if (grid[row+1][c+1].equals(".")) {
                         grid[row+1][c+1] = "|";
                     }
                 }
