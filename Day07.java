@@ -59,10 +59,8 @@ public class Day07 {
                     }
                 }
                 else {
-                    newBeamCounter[c] += beamCounter[c];
-                }
-                if (itemBelow.equals(".")) {
                     grid[row+1][c] = "|";
+                    newBeamCounter[c] += beamCounter[c];
                 }
             }
         }
