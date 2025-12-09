@@ -12,7 +12,7 @@ for line in data:
 
 full_polygon = Polygon(all_points)
 
-def get_highest_area():
+def get_all_areas():
     all_valid_areas = []
     all_areas = []
 
@@ -37,6 +37,6 @@ def get_highest_area():
     return all_areas, all_valid_areas
 
 
-part_one_areas, part_two_areas = get_highest_area()
+part_one_areas, part_two_areas = get_all_areas()
 print("Part one answer:", max(part_one_areas))
 print("Part two answer:", max(part_two_areas))
