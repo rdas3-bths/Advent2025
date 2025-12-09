@@ -12,8 +12,9 @@ for line in data:
 
 full_polygon = Polygon(all_points)
 
-def get_highest_area(part_two):
+def get_highest_area():
     all_valid_areas = []
+    all_areas = []
 
     for i in range(0, len(all_points)):
         for j in range(i+1, len(all_points)):
@@ -29,14 +30,13 @@ def get_highest_area(part_two):
             vertex_four = (min_x, max_y)
             current_rectangle = Polygon((vertex_one, vertex_two, vertex_three, vertex_four))
             area = (abs(point1[0] - point2[0]) + 1) * (abs(point1[1] - point2[1]) + 1)
-            if part_two:
-                if full_polygon.contains(current_rectangle):
-                    all_valid_areas.append(area)
-            else:
+            if full_polygon.contains(current_rectangle):
                 all_valid_areas.append(area)
+            all_areas.append(area)
 
-    all_valid_areas.sort()
-    return all_valid_areas[-1]
+    return all_areas, all_valid_areas
 
-print("Part one answer:", get_highest_area(False))
-print("Part two answer:", get_highest_area(True))
+
+part_one_areas, part_two_areas = get_highest_area()
+print("Part one answer:", max(part_one_areas))
+print("Part two answer:", max(part_two_areas))
